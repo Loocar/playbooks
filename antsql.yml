@@ -1,0 +1,18 @@
+---
+- name: ant
+  hosts: all
+  tasks: 
+  - name: kopiowanie propertisow UFDB_r
+    command: "{{item}}"
+    with_items: 
+    - cp -f /opt/DOCKER/WGRANIA/UFDB_r/properties/build.properties /opt/DOCKER/WGRANIA/def3000_UF_{{ var }}/db
+    when: env == "UFDB_r"
+  - name: kopiowanie propertisow UFDB_t
+    command: "{{item}}"
+    with_items: 
+    - cp -f /opt/DOCKER/WGRANIA/UFDB_t/properties/build.properties /opt/DOCKER/WGRANIA/def3000_UF_{{ var }}/db
+    when: env == "UFDB_t"
+  - name: ant
+    shell: ant -buildfile /opt/DOCKER/WGRANIA/def3000_UF_{{ var }}/db/build.xml
+    register: ant
+  - debug: var=ant.stdout_lines

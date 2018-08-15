@@ -1,0 +1,15 @@
+---
+- name: start WLS i namiar na Guardiana
+  hosts: all
+  tasks: 
+  - name: wait_for http 
+    pause:
+      seconds: 240
+  - name: Kopiowanie z ftp distr.poland.asseco.corp
+    command: "{{item}}"
+    with_items: 
+    - docker exec -d -u 0 wer_{{ env }}_{{ var }} sh -c 'nohup sh /root/Oracle/Middleware/user_projects/domains/base_domain/bin/startManagedWebLogic.sh Server-0&'
+  - name: Guardian
+    command: "{{item}}"
+    with_items: 
+    - docker exec -d -u 0 wer_{{ env }}_{{ var }} sh -c 'ex -sc "a|10.17.200.147 VIRTRZAD.KJOS.WEW" -cx /etc/hosts'

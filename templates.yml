@@ -1,0 +1,12 @@
+---
+- name: templates
+  hosts: all
+  tasks: 
+  - name: Kopiowanie templates
+    command: "{{item}}"
+    with_items: 
+    - docker exec -d -u 0 wer_{{ env }}_{{ var }} sh -c 'cp -f /DEPLOY/WGRANIA/def3000_UF_{{ var }}/applib/templates/*.* /root/Oracle/Middleware/user_projects/domains/base_domain/templates/'
+  - name: chmod
+    command: "{{item}}"
+    with_items: 
+    - docker exec -d -u 0 wer_{{ env }}_{{ var }} sh -c 'chmod -R 7777 /root/Oracle/Middleware/user_projects/domains/base_domain/templates/'

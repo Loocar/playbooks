@@ -1,0 +1,12 @@
+---
+- name: KOPIOWANIE FTP, UZIP
+  hosts: all
+  tasks: 
+  - name: Kopiowanie z ftp distr.poland.asseco.corp
+    command: "{{item}}"
+    with_items: 
+    - wget -nc -P /opt/DOCKER/WGRANIA/ ftp://emisja:qwert6@distr.poland.asseco.corp//local/def3000_UF/testy_wew/def3000_UF_{{ var }}.zip
+  - name: rozpakowanie
+    command: "{{item}}"
+    with_items: 
+    - unzip -o /opt/DOCKER/WGRANIA/def3000_UF_{{ var }}.zip -d /opt/DOCKER/WGRANIA/def3000_UF_{{ var }}
