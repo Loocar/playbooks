@@ -1,9 +1,9 @@
 ---
 - name: Up Up Up my little container
-  #hosts: all
- # tasks:
- # - name: remove container
- #   docker:
+  hosts: all
+  tasks:
+  - name: remove container
+    docker:
       name: wer_{{ env }}_{{ var }}
       state: absent
   - name: up container wer_{{ env }}_{{ var }}
