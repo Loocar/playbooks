@@ -3,11 +3,11 @@
   hosts: all
   tasks:
   - name: remove container
-    docker:
+    docker_container:
       name: wer_{{ env }}_{{ var }}
       state: absent
   - name: up container wer_{{ env }}_{{ var }}
-    docker:
+    docker_container:
       name: wer_{{ env }}_{{ var }}
       image: localhost:5000/uf/wls1036j6ufdb:1.3
       state: started
