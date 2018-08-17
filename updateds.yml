@@ -14,3 +14,6 @@
   - name: update data source {{ var }} UFDB_p
     shell: docker exec -d -u 0 wer_{{ env }}_{{ var }} sh -c 'sh /DEPLOY/WGRANIA/UFDB_p/properties/UF_datasource.bash'
     when: env == "UFDB_p"  
+  - name: update data source {{ var }} UFTOYOTA_r
+    shell: docker exec -d -u 0 wer_{{ env }}_{{ var }} sh -c 'sh /DEPLOY/WGRANIA/UFTOYOTA_r/properties/UF_datasource.bash'
+    when: env == "UFTOYOTA_r"  
