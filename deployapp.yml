@@ -4,7 +4,7 @@
   tasks: 
   - name: wait_for http 
     pause:
-      seconds: 120
+      seconds: 60
   - name: deploy def3000_UF_{{ var }}
     shell: docker exec -d -u 0 wer_{{ env }}_{{ var }}   sh -c '/root/Oracle/Middleware/user_projects/domains/base_domain/bin/setDomainEnv.sh && /root/jdk/jdk1.6.0_45/jre/bin/java -cp /root/Oracle/Middleware/wlserver_10.3/server/lib/weblogic.jar weblogic.Deployer -remote -adminurl t3://localhost:7001 -username weblogic -password welcome1 -deploy -upload -usenonexclusivelock -name def3000_UF_{{ var }} -targets Server-0 -source /DEPLOY/WGRANIA/def3000_UF_{{ var }}/def3000UFAPP.ear>> /DEPLOY/WGRANIA/def3000_UF_{{ var }}_deploy.log' 
     register: docker

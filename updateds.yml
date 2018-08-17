@@ -4,7 +4,7 @@
   tasks: 
   - name: wait_for http 
     pause:
-      seconds: 120
+      seconds: 60
   - name: update data source {{ var }} UFDB_r
     shell: docker exec -d -u 0 wer_{{ env }}_{{ var }} sh -c 'sh /DEPLOY/WGRANIA/UFDB_r/properties/UF_datasource.bash'
     when: env == "UFDB_r"

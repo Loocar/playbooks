@@ -4,7 +4,7 @@
   tasks: 
   - name: wait_for http 
     pause:
-      seconds: 240
+      seconds: 60
   - name: Kopiowanie z ftp distr.poland.asseco.corp
     command: "{{item}}"
     with_items: 
