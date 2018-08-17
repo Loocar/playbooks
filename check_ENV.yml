@@ -5,4 +5,4 @@
   - name: sprawdzenie jakie są środowska
     command: "{{item}}"
     with_items: 
-    - docker ps --format '{{.Names}} -------- {{.Ports}} ---- '
+    - docker ps --format "{{.Names}} -------- {{.Ports}}"
