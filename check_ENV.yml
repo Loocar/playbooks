@@ -3,6 +3,5 @@
   hosts: all
   tasks: 
   - name: sprawdzenie jakie są środowska
-    command: "{{item}}"
-    with_items: 
-    - docker ps --format "{{.Names}} -------- {{.Ports}}"
+    shell: docker ps --format '{{.Names}} -------- {{.Ports}}'
+    
