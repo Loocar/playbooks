@@ -3,11 +3,7 @@
   hosts: all
   tasks: 
   - name: stop kontenerki
-    command: "{{item}}"
-    with_items: 
-    - docker ps | grep '{{ env }}' | awk '{print $1}' | xargs -I {} docker stop {}
+    shell: docker ps | grep '{{ env }}' | awk '{print $1}' | xargs -I {} docker stop {}
   - name: kill kontnereki
-    command: "{{item}}"
-    with_items: 
-    - docker ps -a | grep '{{ env }}' | awk '{print $1}' | xargs -I {} docker rm {}
+    shell: docker ps -a | grep '{{ env }}' | awk '{print $1}' | xargs -I {} docker rm {}
     
