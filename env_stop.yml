@@ -1,11 +1,4 @@
 ---
-- name: Sprawdzamy co jest uruchomione.
-  hosts: all
-  tasks: 
-  - name: sprawdzenie jakie są środowska
-    shell: ""
-    
----
 - name: ubijamy wszystki kontenerki z env
   hosts: all
   tasks: 
