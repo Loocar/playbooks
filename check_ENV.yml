@@ -1,7 +1,0 @@
----
-- name: Sprawdzamy co jest uruchomione.
-  hosts: all
-  tasks: 
-  - name: sprawdzenie jakie są środowska
-    shell: "docker ps --format '{{.Names}} -------- {{.Ports}}'"
-    
