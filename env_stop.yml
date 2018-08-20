@@ -5,9 +5,9 @@
   - name: stop kontenerki
     command: "{{item}}"
     with_items: 
-    - docker ps --format '{{.Names}}' | grep "{{ env }}" | awk '{print $1}' | xargs -I {} docker stop {}
+    - docker ps | grep "{{ env }}" | awk '{print $1}' | xargs -I {} docker stop {}
   - name: kill kontnereki
     command: "{{item}}"
     with_items: 
-    - docker ps -a --format '{{.Names}}' | grep "{{ env }}" | awk '{print $1}' | xargs -I {} docker rm {}
+    - docker ps -a | grep "{{ env }}" | awk '{print $1}' | xargs -I {} docker rm {}
     
