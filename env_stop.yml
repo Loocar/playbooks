@@ -1,0 +1,20 @@
+---
+- name: Sprawdzamy co jest uruchomione.
+  hosts: all
+  tasks: 
+  - name: sprawdzenie jakie są środowska
+    shell: ""
+    
+---
+- name: ubijamy wszystki kontenerki z env
+  hosts: all
+  tasks: 
+  - name: stop kontenerki
+    command: "{{item}}"
+    with_items: 
+    - docker ps --format '{{.Names}}' | grep "{{ env }}" | awk '{print $1}' | xargs -I {} docker stop {}
+  - name: kill kontnereki
+    command: "{{item}}"
+    with_items: 
+    - docker ps -a --format '{{.Names}}' | grep "{{ env }}" | awk '{print $1}' | xargs -I {} docker rm {}
+    
