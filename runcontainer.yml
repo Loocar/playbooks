@@ -17,3 +17,16 @@
       - "{{ port_consola }}:7001"
       - "{{ port_app }}:7011"
       - "{{ port_debug }}:4000"
+      when: (env == "UFDB_t") or (env == "UFDB_p") or (env == "UFDB_r") or (env == "UFTOYOTA_t") or (env == "UFTOYOTA_p") or (env == "UFTOYOTA_r")
+  - name: up container wer_{{ env }}_{{ var }}
+    docker_container:
+      name: wer_{{ env }}_{{ var }}
+      image: localhost:5000/uf/was7j6ufbos:1.2at
+      state: started
+      volumes:
+      - /opt/DOCKER:/DEPLOY 
+      ports:
+      - "{{ port_consola }}:9043"
+      - "{{ port_app }}:9089"
+      - "{{ port_debug }}:8888"
+      when: (env == "UFBOS_t") or (env == "UFBOS_p") or (env == "UFBOS_r")      

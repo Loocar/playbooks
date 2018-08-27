@@ -31,7 +31,12 @@
     command: "{{item}}"
     with_items: 
     - cp -f /opt/DOCKER/WGRANIA/UFTOYOTA_t/properties/build.properties /opt/DOCKER/WGRANIA/def3000_UF_{{ var }}/db
-    when: env == "UFTOYOTA_t" 
+    when: env == "UFTOYOTA_t"
+  - name: kopiowanie propertisow UFBOS_p
+    command: "{{item}}"
+    with_items: 
+    - cp -f /opt/DOCKER/WGRANIA/UFBOS_p/properties/build.properties /opt/DOCKER/WGRANIA/def3000_UF_{{ var }}/db
+    when: env == "UFBOS_p"     
   - name: ant
     shell: ant -buildfile /opt/DOCKER/WGRANIA/def3000_UF_{{ var }}/db/build.xml
     register: ant
