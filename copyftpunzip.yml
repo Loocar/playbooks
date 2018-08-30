@@ -6,7 +6,15 @@
     command: "{{item}}"
     with_items: 
     - wget -nc -P /opt/DOCKER/WGRANIA/ ftp://emisja:qwert6@distr.poland.asseco.corp//local/def3000_UF/testy_wew/def3000_UF_{{ var }}.zip
+  - name: usuwanie katalogu
+    command: "{{item}}"
+    with_items: 
+    - rm -R -f /opt/DOCKER/WGRANIA/def3000_UF_{{ var }}
   - name: rozpakowanie
     command: "{{item}}"
     with_items: 
     - unzip -o /opt/DOCKER/WGRANIA/def3000_UF_{{ var }}.zip -d /opt/DOCKER/WGRANIA/def3000_UF_{{ var }}
+  - name: usuwanie zipa
+    command: "{{item}}"
+    with_items: 
+    - rm -R -f /opt/DOCKER/WGRANIA/def3000_UF_{{ var }}.zip
