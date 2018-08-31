@@ -21,8 +21,12 @@
   - name: up container wer_{{ env }}_{{ var }}
     docker_container:
       name: wer_{{ env }}_{{ var }}
-      image: localhost:5000/uf/was7j6ufbos:1.2at
+      image: ufbos
       state: started
+      command: /opt/IBM/WebSphere/AppServer/bin/startServer.sh server1
+      networks: 
+        - name: siecDocker
+        - ipv4_address: "172.18.0.29" 
       volumes:
       - /opt/DOCKER:/DEPLOY 
       ports:
