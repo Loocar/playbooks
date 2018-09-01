@@ -21,9 +21,9 @@
   - name: up container wer_{{ env }}_{{ var }}
     docker_container:
       name: wer_{{ env }}_{{ var }}
-      image: ufbos
+      image: localhost:5000/uf/was7j6ufbos:1.3ap
       state: started
-      command: /opt/IBM/WebSphere/AppServer/bin/startServer.sh server1
+      #command: /opt/IBM/WebSphere/AppServer/bin/startServer.sh server1
       networks: 
         - name: siecDocker
           ipv4_address: 172.18.0.29 
@@ -31,6 +31,6 @@
       - /opt/DOCKER:/DEPLOY 
       ports:
       - "{{ port_consola }}:9043"
-      - "{{ port_app }}:9089"
-      - "{{ port_debug }}:8888"
-    when: (env == "UFBOS_t") or (env == "UFBOS_p") or (env == "UFBOS_r")      
+      - "9022:9089"
+      - "{{ port_debug }}:7777"
+    when: (env == "UFBOS_p")      
