@@ -23,7 +23,7 @@
       name: wer_{{ env }}_{{ var }}
       image: localhost:5000/uf/was7j6ufbos:1.3ap
       state: started
-      command: a2enmod proxy proxy_http && service apache2 restart
+      #command: a2enmod proxy proxy_http && service apache2 restart
       networks: 
         - name: siecDocker
           ipv4_address: 172.18.0.29 
