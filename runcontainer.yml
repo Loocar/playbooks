@@ -21,7 +21,7 @@
   - name: up container wer_{{ env }}_{{ var }}
     docker_container:
       name: wer_{{ env }}_{{ var }}
-      image: localhost:5000/uf/was7j6ufbos:1.3ap
+      image: localhost:5000/uf/was7j6ufbos:1.4ap
       state: started
       #command: a2enmod proxy proxy_http && service apache2 restart
       networks: 
