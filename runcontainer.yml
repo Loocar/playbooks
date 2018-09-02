@@ -26,7 +26,7 @@
       #command: a2enmod proxy proxy_http && service apache2 restart
       networks: 
         - name: siecDocker
-        ipv4_address: {{ ip_auth }}
+          ipv4_address: "{{ ip_auth }}"
       volumes:
       - /opt/DOCKER:/DEPLOY 
       ports:
