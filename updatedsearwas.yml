@@ -2,16 +2,16 @@
 - name: instalowanie aplikacji
   hosts: all
   tasks: 
-  - name: bash WAS {{ var }} UFBOS_p
+  - name: bash WAS {{ var }} {{ env}}
     shell: docker exec -u 0 wer_{{ env }}_{{ var }} sh -c 'sed -i '1s/sh/bash/' /opt/IBM/WebSphere/AppServer/bin/wsadmin.sh'
-    when: env == "UFBOS_p"
-  - name: update apache-conf {{ var }} UFBOS_p
+    when: env == "UFBOS_p" or env == "UFBOS_r" or env == "UFBOS_t"
+  - name: update apache-conf {{ var }} {{ env }}
     shell: docker exec -u 0 wer_{{ env }}_{{ var }} sh -c 'sed -i '1s/9088/{{ port_app }}/' /etc/apache2/sites-enabled/ufsgb.conf'
     when: env == "UFBOS_p" or env == "UFBOS_r" or env == "UFBOS_t"    
-  - name: update apache-port {{ var }} UFBOS_p
+  - name: update apache-port {{ var }} {{ env }}
     shell: docker exec -u 0 wer_{{ env }}_{{ var }} sh -c 'sed -i 's/9088/{{ port_app }}/' /etc/apache2/ports.conf'
     when: env == "UFBOS_p" or env == "UFBOS_r" or env == "UFBOS_t"     
-  - name: update ip {{ var }} UFBOS_p
+  - name: update ip {{ var }} {{ env }}
     shell: docker exec -u 0 wer_{{ env }}_{{ var }} sh -c 'sed -i 's/172.18.0.28/{{ ip_auth }}/' /opt/IBM/WebSphere/AppServer/profiles/AppSrv01/UFcfg.properties'
     when: env == "UFBOS_p" or env == "UFBOS_r" or env == "UFBOS_t"   
   - name: update data source, ear, start WAS {{ var }} UFBOS_p
