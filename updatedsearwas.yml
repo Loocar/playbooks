@@ -4,7 +4,7 @@
   tasks: 
   - name: update data source, ear, start WAS {{ var }} UFBOS_p
     shell: docker exec -u 0 wer_{{ env }}_{{ var }} sh -c 'sed -i '1s/sh/bash/' /opt/IBM/WebSphere/AppServer/bin/wsadmin.sh'
-  when: env == "UFBOS_p"
+    when: env == "UFBOS_p"
   - name: update data source, ear, start WAS {{ var }} UFBOS_p
     shell: docker exec -d -u 0 wer_{{ env }}_{{ var }} sh -c 'cd /DEPLOY/WGRANIA/UFBOS_p/properties/AUTOMAT && sh /opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/wsadmin.sh -lang jython -f UF_deploy2.py def3000_UF_{{ var}}'
-  when: env == "UFBOS_p"
+    when: env == "UFBOS_p"
