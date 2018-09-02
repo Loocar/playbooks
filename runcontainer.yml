@@ -31,6 +31,6 @@
       - /opt/DOCKER:/DEPLOY 
       ports:
       - "9049:9043"
-      - "9089:9089"
+      - "{{ port_app }}:{{ port_app }}"
       - "7779:7777"
     when: (env == "UFBOS_p")      
