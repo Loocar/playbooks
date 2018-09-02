@@ -17,6 +17,9 @@
   - name: update data source, ear, start WAS {{ var }} UFBOS_p
     shell: docker exec -d -u 0 wer_{{ env }}_{{ var }} sh -c 'cd /DEPLOY/WGRANIA/UFBOS_p/properties/AUTOMAT && sh /opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/wsadmin.sh -lang jython -f UF_deploy2.py def3000_UF_{{ var }}'
     when: env == "UFBOS_p"
+  - name: start apache
+    shell: docker exec -d -u 0 wer_{{ env }}_{{ var }} sh -c 'a2enmod proxy proxy_http && service apache2 restart'
+    when: env == "UFBOS_p" or env == "UFBOS_r" or env == "UFBOS_t"
 
     
    
