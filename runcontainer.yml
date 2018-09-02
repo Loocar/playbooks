@@ -30,7 +30,7 @@
       volumes:
       - /opt/DOCKER:/DEPLOY 
       ports:
-      - "9049:9043"
+      - "{{ port_consola }}:9043"
       - "{{ port_app }}:{{ port_app }}"
-      - "7779:7777"
-    when: (env == "UFBOS_p")      
+      - "{{ port_debug }}:7777"
+    when: (env == "UFBOS_p") or (env == "UFBOS_t") or (env == "UFBOS_r")
