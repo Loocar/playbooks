@@ -30,7 +30,7 @@
     shell: docker exec -u 0 wer_{{ env }}_{{ var }} sh -c 'a2enmod proxy proxy_http && service apache2 restart'
     when: env == "UFBOS_p" or env == "UFBOS_r" or env == "UFBOS_t"
   - name: restart WAS
-    shell: docker exec -u 0 wer_{{ env }}_{{ var }} sh -c 'sh /opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/stopServer.sh server1 && sh /opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startServer.sh server1'
+    shell: docker exec -u 0 wer_{{ env }}_{{ var }} sh -c 'sh /opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/stopServer.sh server1 && nohup sh /opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startServer.sh server1&'
     when: env == "UFBOS_p" or env == "UFBOS_r" or env == "UFBOS_t"
 
     
