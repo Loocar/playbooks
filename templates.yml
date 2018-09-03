@@ -12,10 +12,16 @@
     with_items: 
     - docker exec -u 0 wer_{{ env }}_{{ var }} sh -c 'chmod -R 7777 /root/Oracle/Middleware/user_projects/domains/base_domain/templates/'
     when: (env == "UFDB_t") or (env == "UFDB_p") or (env == "UFDB_r") or (env == "UFTOYOTA_t") or (env == "UFTOYOTA_p") or (env == "UFTOYOTA_r")
-  - name: Kopiowanie templates BOS
+  - name: rm templates BOS
     command: "{{item}}"
     with_items: 
-    - docker exec -u 0 wer_{{ env }}_{{ var }} sh -c 'rm -f -R /opt/IBM/WebSphere/AppServer/applib/uf/* && cp -R -a /DEPLOY/WGRANIA/def3000_UF_{{ var }}/applib/. /opt/IBM/WebSphere/AppServer/applib/uf/  when: (env == "UFBOS_t") or (env == "UFBOS_p") or (env == "UFBOS_r")
+    - docker exec -u 0 wer_{{ env }}_{{ var }} sh -c 'rm -f -R /opt/IBM/WebSphere/AppServer/applib/uf/*'
+    when: (env == "UFBOS_t") or (env == "UFBOS_p") or (env == "UFBOS_r")
+  - name: rm templates BOS
+    command: "{{item}}"
+    with_items: 
+    - docker exec -u 0 wer_{{ env }}_{{ var }} sh -c 'cp -R -a /DEPLOY/WGRANIA/def3000_UF_{{ var }}/applib/. /opt/IBM/WebSphere/AppServer/applib/uf/'
+    when: (env == "UFBOS_t") or (env == "UFBOS_p") or (env == "UFBOS_r")
   - name: chmod
     command: "{{item}}"
     with_items: 
