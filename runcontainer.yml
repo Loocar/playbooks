@@ -6,7 +6,7 @@
     docker_container:
       name: wer_{{ env }}_{{ var }}
       state: absent
-  - name: up container wer_{{ env }}_{{ var }}
+  - name: up container WLS
     docker_container:
       name: wer_{{ env }}_{{ var }}
       image: localhost:5000/uf/wls1036j6ufdb:1.3
@@ -18,7 +18,7 @@
       - "{{ port_app }}:7011"
       - "{{ port_debug }}:4000"
     when: (env == "UFDB_t") or (env == "UFDB_p") or (env == "UFDB_r") or (env == "UFTOYOTA_t") or (env == "UFTOYOTA_p") or (env == "UFTOYOTA_r")
-  - name: up container wer_{{ env }}_{{ var }}
+  - name: up container WAS 7.0
     docker_container:
       name: wer_{{ env }}_{{ var }}
       image: localhost:5000/uf/was7j6ufbos:1.4ap
@@ -34,3 +34,18 @@
       - "{{ port_app }}:{{ port_app }}"
       - "{{ port_debug }}:7777"
     when: (env == "UFBOS_p") or (env == "UFBOS_t") or (env == "UFBOS_r")
+  - name: up container WAS 8.5.5.13
+    docker_container:
+      name: wer_{{ env }}_{{ var }}
+      image: 172.25.25.14:5000/uf/was85513j8ufgrock:1.2
+      state: started
+      volumes:
+      - /opt/DOCKER:/DEPLOY 
+      ports:
+      - "{{ port_consola }}:9043"
+      - "{{ port_app }}:{{ port_app }}"
+      - "{{ port_debug }}:7777"
+    when: (env == "UFGROCK_p") or (env == "UFGROCK_t") or (env == "UFGROCK_r")
+    
+    
+    

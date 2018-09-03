@@ -47,6 +47,11 @@
     with_items: 
     - cp -f /opt/DOCKER/WGRANIA/UFBOS_t/properties/build.properties /opt/DOCKER/WGRANIA/def3000_UF_{{ var }}/db
     when: env == "UFBOS_t"       
+  - name: kopiowanie propertisow UFGROCK_r
+    command: "{{item}}"
+    with_items: 
+    - cp -f /opt/DOCKER/WGRANIA/UFGROCK_r/properties/build.properties /opt/DOCKER/WGRANIA/def3000_UF_{{ var }}/db
+    when: env == "UFGROCK_r"
   - name: ant
     shell: ant -buildfile /opt/DOCKER/WGRANIA/def3000_UF_{{ var }}/db/build.xml
     register: ant
