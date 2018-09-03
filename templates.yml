@@ -5,20 +5,20 @@
   - name: Kopiowanie templates Toyota, Deutche
     command: "{{item}}"
     with_items: 
-    - docker exec -d -u 0 wer_{{ env }}_{{ var }} sh -c 'cp -f /DEPLOY/WGRANIA/def3000_UF_{{ var }}/applib/templates/*.* /root/Oracle/Middleware/user_projects/domains/base_domain/templates/'
+    - docker exec -u 0 wer_{{ env }}_{{ var }} sh -c 'cp -f /DEPLOY/WGRANIA/def3000_UF_{{ var }}/applib/templates/*.* /root/Oracle/Middleware/user_projects/domains/base_domain/templates/'
     when: (env == "UFDB_t") or (env == "UFDB_p") or (env == "UFDB_r") or (env == "UFTOYOTA_t") or (env == "UFTOYOTA_p") or (env == "UFTOYOTA_r")
   - name: chmod
     command: "{{item}}"
     with_items: 
-    - docker exec -d -u 0 wer_{{ env }}_{{ var }} sh -c 'chmod -R 7777 /root/Oracle/Middleware/user_projects/domains/base_domain/templates/'
+    - docker exec -u 0 wer_{{ env }}_{{ var }} sh -c 'chmod -R 7777 /root/Oracle/Middleware/user_projects/domains/base_domain/templates/'
     when: (env == "UFDB_t") or (env == "UFDB_p") or (env == "UFDB_r") or (env == "UFTOYOTA_t") or (env == "UFTOYOTA_p") or (env == "UFTOYOTA_r")
   - name: Kopiowanie templates BOS
     command: "{{item}}"
     with_items: 
-    - docker exec -d -u 0 wer_{{ env }}_{{ var }} sh -c 'cp -f /DEPLOY/WGRANIA/def3000_UF_{{ var }}/applib/templates/*.* /opt/IBM/WebSphere/AppServer/applib/uf/templates'
+    - docker exec -u 0 wer_{{ env }}_{{ var }} sh -c 'cp -f /DEPLOY/WGRANIA/def3000_UF_{{ var }}/applib/templates/*.* /opt/IBM/WebSphere/AppServer/applib/uf/templates'
     when: (env == "UFBOS_t") or (env == "UFBOS_p") or (env == "UFBOS_r")
   - name: chmod
     command: "{{item}}"
     with_items: 
-    - docker exec -d -u 0 wer_{{ env }}_{{ var }} sh -c 'chmod -R 7777 /opt/IBM/WebSphere/AppServer/applib/uf/templates'
+    - docker exec -u 0 wer_{{ env }}_{{ var }} sh -c 'chmod -R 7777 /opt/IBM/WebSphere/AppServer/applib/uf/templates'
     when: (env == "UFBOS_t") or (env == "UFBOS_p") or (env == "UFBOS_r")
