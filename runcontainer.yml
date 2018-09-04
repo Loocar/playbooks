@@ -33,7 +33,7 @@
       - "{{ port_consola }}:9043"
       - "{{ port_app }}:{{ port_app }}"
       - "{{ port_debug }}:7777"
-    when: (env == "UFBOS_p") or (env == "UFBOS_t") or (env == "UFBOS_r")
+    when: (env == "UFBOS_p") or (env == "UFBOS_t") or (env == "UFBOS_r") or (env == "UFBOS_x")
   - name: up container WAS 8.5.5.13
     docker_container:
       name: wer_{{ env }}_{{ var }}
