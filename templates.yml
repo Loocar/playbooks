@@ -16,14 +16,14 @@
     command: "{{item}}"
     with_items: 
     - docker exec -u 0 wer_{{ env }}_{{ var }} sh -c 'rm -f -R /opt/IBM/WebSphere/AppServer/applib/uf/*'
-    when: (env == "UFBOS_t") or (env == "UFBOS_p") or (env == "UFBOS_r") or (env == "UFBOS_x")
+    when: (env == "UFBOS_t") or (env == "UFBOS_p") or (env == "UFBOS_r") or (env == "UFBOS_x") or (env == "UFSGB_r")
   - name: kopty applib i  templates BOS
     command: "{{item}}"
     with_items: 
     - docker exec -u 0 wer_{{ env }}_{{ var }} sh -c 'cp -R -a /DEPLOY/WGRANIA/def3000_UF_{{ var }}/applib/. /opt/IBM/WebSphere/AppServer/applib/uf/'
-    when: (env == "UFBOS_t") or (env == "UFBOS_p") or (env == "UFBOS_r") or (env == "UFBOS_x")
+    when: (env == "UFBOS_t") or (env == "UFBOS_p") or (env == "UFBOS_r") or (env == "UFBOS_x")  or (env == "UFSGB_r")
   - name: chmod
     command: "{{item}}"
     with_items: 
     - docker exec -u 0 wer_{{ env }}_{{ var }} sh -c 'chmod -R 7777 /opt/IBM/WebSphere/AppServer/applib/uf/templates'
-    when: (env == "UFBOS_t") or (env == "UFBOS_p") or (env == "UFBOS_r") or (env == "UFBOS_x")
+    when: (env == "UFBOS_t") or (env == "UFBOS_p") or (env == "UFBOS_r") or (env == "UFBOS_x") or (env == "UFSGB_r")
